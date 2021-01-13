@@ -14,29 +14,33 @@ generate.addEventListener('click', () => {
     const bar = document.createElement('div');
     bar.className = 'bar';
     bar.style.height = `${values[i]}px`;
+    bar.innerText = values[i];
     visual.appendChild(bar);
   }
 })
+function sleep (time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
 
 const sort = document.querySelector('#sort');
-sort.addEventListener('click', () => {
+sort.addEventListener('click', async () => {
   const bars = document.querySelectorAll('.bar');
   for(let i = 0; i < bars.length; i++) {
     for(let j = 0; j < bars.length - 1; j++) {
-      if(values[i] < values[j]) {
-        let temp = values[i];
-        values[i] = values[j];
-        values[j] = temp;
-        bars[i].style.height = `${values[i]}px`;
-        bars[j].style.height = `${values[j]}px`;
-        
-      }
-      // if(bars[i].style.height < bars[j].style.height) {
-      //   let temp = bars[i].style.height;
-      //   console.log(temp);
-      //   bars[i].style.height = bars[j].style.height;
-      //   bars[j].style.height = temp;
-      // }
+        if(values[i] < values[j]) {
+          bars[i].style.backgroundColor = 'red';
+          bars[j].style.backgroundColor = 'red';
+          let temp = values[i];
+          values[i] = values[j];
+          values[j] = temp;
+          bars[i].style.height = `${values[i]}px`;
+          bars[j].style.height = `${values[j]}px`;
+          await sleep(300);
+          bars[i].style.backgroundColor = 'green';
+          bars[i].innerText = values[i];
+          bars[j].style.backgroundColor = 'green';
+          bars[j].innerText = values[j];
+        }
     }
   }
 })
