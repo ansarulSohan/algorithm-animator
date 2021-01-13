@@ -1,0 +1,18 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+
+.visual {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.bar {
+  background-color: green;
+  width: 50px;
+  margin: 0px 10px;
+}
